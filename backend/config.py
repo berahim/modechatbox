@@ -80,3 +80,24 @@ def get_handoff_settings() -> HandoffSettings:
             os.getenv("HANDOFF_RATE_LIMIT_WINDOW_SECONDS", "3600")
         ),
     )
+
+
+def get_cors_allow_origins() -> list[str]:
+    """Explicit allow-list of browser origins permitted to call the API.
+
+    Read from ``CORS_ALLOW_ORIGINS`` as a comma-separated list. Empty/unset
+    means no cross-origin browser request is allowed (same-origin only). We
+    never return ``"*"`` implicitly: cross-origin access must be opt-in so a
+    staging API only answers the approved test/fake website origin.
+    """
+    raw = os.getenv("CORS_ALLOW_ORIGINS", "")
+    return [origin.strip() for origin in raw.split(",") if origin.strip()]
+
+
+def serve_static_enabled() -> bool:
+    """Whether to mount the bundled frontend assets.
+
+    Defaults to ``True`` for local development. Set ``SERVE_STATIC=false`` for
+    an API-only backend deployment (staging deploys only ``/api/*``).
+    """
+    return os.getenv("SERVE_STATIC", "true").strip().lower() != "false"

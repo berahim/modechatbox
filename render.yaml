@@ -1,0 +1,44 @@
+# Render blueprint – STAGING backend-only deploy of the chatbox handoff API.
+# HTTPS is provisioned automatically by Render for the *.onrender.com domain.
+services:
+  - type: web
+    name: modechat-handoff-staging
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      # ── Non-secret staging configuration ─────────────────────
+      # Staging must NOT be production: routes mail to the TEST recipient.
+      - key: APP_ENV
+        value: staging
+      - key: SERVE_STATIC
+        value: "false"
+      - key: MAIL_PROVIDER
+        value: resend
+      # Current verified/test sender (Resend sandbox). Replace with a verified
+      # domain address only for the eventual production deploy.
+      - key: CHATBOX_MAIL_FROM
+        value: onboarding@resend.dev
+      # Lock CORS to the approved test/fake website origin. Update this value
+      # to the real staging frontend origin before testing from a browser.
+      - key: CORS_ALLOW_ORIGINS
+        value: https://staging-test-site.example.com
+      - key: HANDOFF_RATE_LIMIT_SECONDS
+        value: "30"
+      - key: HANDOFF_RATE_LIMIT_MAX_REQUESTS
+        value: "5"
+      - key: HANDOFF_RATE_LIMIT_WINDOW_SECONDS
+        value: "3600"
+
+      # ── Secrets / per-environment (set in Render dashboard) ──
+      # Your own test mailbox – every staging handoff is routed here.
+      - key: CHATBOX_HANDOFF_TEST_TO
+        sync: false
+      # Real provider key – server-side only, never committed.
+      - key: RESEND_API_KEY
+        sync: false
+      # Reserved for the final client recipient; leave UNSET in staging so a
+      # misconfigured APP_ENV cannot email the client (handoff fails safely).
+      - key: CHATBOX_HANDOFF_TO
+        sync: false
