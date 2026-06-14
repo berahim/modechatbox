@@ -1,0 +1,54 @@
+# ── Environment & secrets ────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.local
+secrets.json
+*.secret
+*.pem
+*.key
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# ── Virtual environments ─────────────────────────────────────
+.venv/
+.venv*
+venv/
+env/
+ENV/
+
+# ── Node / frontend ──────────────────────────────────────────
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Logs & temp ──────────────────────────────────────────────
+*.log
+*.tmp
+
+# ── OS / editor ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

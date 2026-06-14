@@ -1,0 +1,204 @@
+{
+  "language": "nl",
+  "version": "1.0",
+  "intents": [
+    {
+      "id": "minimum_order_quantity",
+      "question": "Wat is de minimale bestelhoeveelheid?",
+      "exampleUserQuestions": [
+        "Kan ik kleine oplages bestellen?",
+        "Vanaf hoeveel stuks kan ik bestellen?",
+        "Vanaf hoeveel stuks produceren jullie?",
+        "Is 20 stuks mogelijk?",
+        "Jullie minimum order?",
+        "Kleine aantallen bestellen?"
+      ],
+      "answer": "Bij BCF Confection kunt u orders plaatsen vanaf 20 stuks. Zo houdt u uw voorraadkosten onder controle en biedt u uw klanten een unieke service zonder grote, dure stocks.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "delivery_time",
+      "question": "Wat is de leveringstermijn?",
+      "exampleUserQuestions": [
+        "Hoe snel kan ik mijn bestelling ontvangen?",
+        "Wanneer wordt mijn order geleverd?",
+        "Hoe lang duurt levering?",
+        "Hoe lang duurt productie?",
+        "Snelle levering mogelijk?",
+        "Levertijd bij BCF?"
+      ],
+      "answer": "Wij leveren uw bestelling in 2 tot 4 weken. Geen volle containers die drie maanden onderweg zijn, maar beperkte oplages met de mogelijkheid tot afnames verspreid in de tijd.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "product_range",
+      "question": "Welke producten maken jullie?",
+      "exampleUserQuestions": [
+        "Wat voor textiel produceren jullie?",
+        "Maken jullie lingerie?",
+        "Babykleding produceren?",
+        "Welk assortiment bieden jullie?",
+        "Wat kunnen jullie voor mij maken?"
+      ],
+      "answer": "BCF Confection produceert textiel in kleine oplages, waaronder lingerie en shapewear, baby- en kindertextiel, en knitwear. Van shapewear tot verzorgingsartikelen en kinderslaapzakken — wij bieden verschillende mogelijkheden om uw product te confectioneren.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "production_methods",
+      "question": "Welke productiemethoden bieden jullie aan?",
+      "exampleUserQuestions": [
+        "Wat is CMT?",
+        "Wat is het verschil tussen CMT en RMG?",
+        "Doen jullie loonwerk?",
+        "Kan ik mijn eigen stoffen meebrengen?",
+        "Wat is een ready-made garment?",
+        "Hoe werkt jullie productieproces?"
+      ],
+      "answer": "BCF Confection biedt twee productiemogelijkheden:\n• CMT (Cut, Make and Trim): U levert de grondstoffen en technische documenten. BCF snijdt, confectioneert en levert.\n• RMG (Ready-Made Garments): U bezorgt een staal. BCF zorgt voor grondstoffen, technische documenten, productie én levering.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "sustainability_certification",
+      "question": "Hoe duurzaam is BCF Confection?",
+      "exampleUserQuestions": [
+        "Zijn jullie OEKO-TEX gecertificeerd?",
+        "Werken jullie met biologisch textiel?",
+        "Fair trade productie?",
+        "Milieuvriendelijk textiel?",
+        "Wat zijn jullie duurzaamheidsnormen?"
+      ],
+      "answer": "Duurzaamheid is een kernwaarde:\n• Alle grondstoffen zijn OEKO-TEX®-gecertificeerd — vrij van pesticiden en zware metalen.\n• Wij werken in de geest van de Fair Wear Foundation voor goede arbeidsomstandigheden in Tunesië.\n• In elke stap van het productieproces hebben wij aandacht voor water- en energieverbruik.",
+      "handoffAllowed": true,
+      "status": "pending_verification"
+    },
+    {
+      "id": "contact_details",
+      "question": "Hoe kan ik contact opnemen?",
+      "exampleUserQuestions": [
+        "Waar kan ik jullie bereiken?",
+        "Telefoonnummer BCF?",
+        "E-mailadres BCF?",
+        "Contactformulier?"
+      ],
+      "answer": "U kunt BCF Confection bereiken via:\n• E-mail: info@bcf-confection.com\n• Telefoon: (+216) 73 357 187\n• Adres: Hedi Chaker Street, 4022 Akouda, Sousse – Tunesië\n• Contactformulier: bcf-confection.com/nl/contacteer-ons",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "lingerie_shapewear",
+      "question": "Produceert BCF Confection lingerie en shapewear?",
+      "exampleUserQuestions": [
+        "Kunnen jullie BH's maken?",
+        "Corrigerende kleding produceren?",
+        "Lingerie in kleine oplage?",
+        "Shapewear met complexe naden?",
+        "Kanten lingerie produceren?"
+      ],
+      "answer": "BCF Confection heeft generaties lang technische kennis en ervaring over complexe naai- en productietechnieken. In onze gespecialiseerde productie-eenheid in Tunesië produceren wij lingerie en shapewear van uitstekende kwaliteit met een hoogwaardige afwerking.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "baby_children_textile",
+      "question": "Produceert BCF baby- en kindertextiel?",
+      "exampleUserQuestions": [
+        "Kunnen jullie babykleding maken?",
+        "Slaapzakken produceren?",
+        "Kinderkleding in kleine oplage?",
+        "Veiligheid babytextiel?",
+        "Badjassen voor kinderen?"
+      ],
+      "answer": "Wij produceren een volledig gamma baby- en verzorgingstextiel: slaapzakken, badjassen, slabbetjes, handdoeken en washandjes. De wettelijke veiligheidsvereisten voor baby- en kinderartikelen zijn bij de strengste in de sector — BCF Confection voldoet aan al deze normen.",
+      "handoffAllowed": true,
+      "status": "pending_verification"
+    },
+    {
+      "id": "certificates",
+      "question": "Welke certificaten heeft BCF Confection?",
+      "exampleUserQuestions": [
+        "Zijn jullie ISO gecertificeerd?",
+        "GOTS certificaat?",
+        "OEKO-TEX label?",
+        "Biologisch textiel certificaat?",
+        "Welke kwaliteitslabels?"
+      ],
+      "answer": "BCF Confection beschikt over:\n• ISO-certificaten (geïntegreerd managementsysteem)\n• GOTS-certificaat voor biologisch geteelde textielvezels\n• OEKO-TEX®-certificering voor alle grondstoffen",
+      "handoffAllowed": true,
+      "status": "pending_verification"
+    },
+    {
+      "id": "production_location",
+      "question": "Waar is de productie-eenheid van BCF Confection?",
+      "exampleUserQuestions": [
+        "Waar produceren jullie?",
+        "Hebben jullie een fabriek in België?",
+        "Tunesië productie?",
+        "Waar is jullie atelier?",
+        "Belgisch of buitenlands geproduceerd?"
+      ],
+      "answer": "BCF Confection heeft een hoofdkantoor in Vlaanderen en een eigen productie-eenheid in Tunesië (Akouda, Sousse). In 1989 opende de derde generatie deze productie-eenheid. Wij werken er in de geest van de Fair Wear Foundation.",
+      "handoffAllowed": true,
+      "status": "pending_verification"
+    },
+    {
+      "id": "technical_studio",
+      "question": "Wat doet het studiebureau van BCF?",
+      "exampleUserQuestions": [
+        "Kunnen jullie patronen tekenen?",
+        "Technische begeleiding bij ontwerp?",
+        "Stofanalyse mogelijk?",
+        "Productiekost berekenen?",
+        "2D/3D patroon software?"
+      ],
+      "answer": "Ons eigen studiebureau maakt op vraag alle technische documenten, analyseert stoffen en berekent productietijd en -kost. Met geavanceerde software tekenen wij patronen in 2D/3D.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "yarns_machines",
+      "question": "Welke garens en machines gebruikt BCF?",
+      "exampleUserQuestions": [
+        "Wat voor garens gebruiken jullie?",
+        "Werken jullie met Coats garens?",
+        "Welke naaimachines?",
+        "Juki of Brother machines?",
+        "Kwaliteit van de afwerking?"
+      ],
+      "answer": "BCF Confection gebruikt bijna uitsluitend garens van Coats, de Europese marktleider in garens. Wij werken met naaimachines van Juki en Brother voor een optimale kwaliteit en afwerking.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "company_history",
+      "question": "Wat is de geschiedenis van BCF Confection?",
+      "exampleUserQuestions": [
+        "Wanneer opgericht?",
+        "Hoe lang bestaan jullie al?",
+        "Familiebedrijf?",
+        "Wie is de oprichter?",
+        "Hoeveel generaties?"
+      ],
+      "answer": "BCF Confection is een Belgisch familiebedrijf, opgericht in 1954 door Germaine De Dier in Haaltert. Anno 2018 vervoegt Nicolas de Cremer het bedrijf als vierde generatie. Al meer dan 60 jaar wordt kennis en vakmanschap doorgegeven van generatie op generatie.",
+      "handoffAllowed": true,
+      "status": "approved"
+    },
+    {
+      "id": "pricing_quote",
+      "question": "Hoe kan ik een offerte aanvragen?",
+      "exampleUserQuestions": [
+        "Hoeveel kost productie bij BCF?",
+        "Prijs per stuk?",
+        "Offerte aanvragen?",
+        "Tarieven textielproductie?",
+        "Kostprijs berekening?"
+      ],
+      "answer": "Voor prijsinformatie en een persoonlijke offerte kunt u contact opnemen via info@bcf-confection.com of (+216) 73 357 187. Onze medewerkers berekenen de productietijd en -kost op maat van uw project.",
+      "handoffAllowed": true,
+      "status": "approved"
+    }
+  ]
+}

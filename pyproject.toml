@@ -1,0 +1,34 @@
+[project]
+name = "modechat"
+version = "0.1.0"
+description = "BCF Confection chatbox – backend and development tooling"
+readme = "CHATBOX_MVP_RULES.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "python-dotenv>=1.0.0",
+    "email-validator>=2.2.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0.0",
+    # Required by Starlette/FastAPI TestClient.
+    "httpx>=0.27.0",
+]
+
+[project.scripts]
+modechat-serve = "scripts.dev_server:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*", "backend*"]
