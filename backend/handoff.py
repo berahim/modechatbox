@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import re
 import time
 from typing import Annotated
 
@@ -31,6 +32,10 @@ _submit_history: dict[str, list[float]] = {}
 # map without bound.
 _MAX_TRACKED_KEYS = 10_000
 
+# Matches ASCII control characters (incl. CR/LF). Stripped from the name so a
+# crafted value cannot inject extra headers into the email Subject line.
+_CONTROL_CHARS_RE = re.compile(r"[\x00-\x1f\x7f]")
+
 
 class HandoffPayload(BaseModel):
     name: Annotated[str, Field(min_length=1, max_length=100)]
@@ -40,6 +45,13 @@ class HandoffPayload(BaseModel):
     pageUrl: Annotated[str | None, Field(max_length=500)] = None
     language: Annotated[str, Field(min_length=2, max_length=10)] = "nl"
 
+    @field_validator("name", mode="after")
+    @classmethod
+    def _strip_control_chars(cls, value: str) -> str:
+        # ``name`` is interpolated into the email Subject header; removing
+        # control characters (notably CR/LF) prevents header injection.
+        return _CONTROL_CHARS_RE.sub("", value)
+
     @field_validator("name", "question", mode="after")
     @classmethod
     def _reject_blank(cls, value: str) -> str:
@@ -48,13 +60,27 @@ class HandoffPayload(BaseModel):
             raise ValueError("required")
         return stripped
 
-    @field_validator("company", "pageUrl", mode="after")
+    @field_validator("company", mode="after")
     @classmethod
     def _normalize_optional(cls, value: str | None) -> str | None:
         if value is None:
             return None
         stripped = value.strip()
         return stripped or None
+
+    @field_validator("pageUrl", mode="after")
+    @classmethod
+    def _normalize_page_url(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        stripped = value.strip()
+        if not stripped:
+            return None
+        # Only accept absolute http(s) URLs; anything else is dropped rather
+        # than echoed verbatim into the handoff email.
+        if not re.match(r"https?://", stripped, re.IGNORECASE):
+            return None
+        return stripped
 
 
 def _client_ip(request: Request) -> str:

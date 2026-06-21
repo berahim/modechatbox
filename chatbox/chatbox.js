@@ -296,6 +296,13 @@
       prompt.className = "bcf-chat-handoff-prompt";
       prompt.textContent = "Mag ik deze vraag doorsturen naar BCF Confection?";
 
+      // Inline error shown on a failed send so the confirm/edit buttons stay
+      // available for retry instead of dead-ending on an error-only screen.
+      var errorMessage = document.createElement("p");
+      errorMessage.className = "bcf-chat-handoff-error";
+      errorMessage.setAttribute("role", "alert");
+      errorMessage.hidden = true;
+
       var confirmBtn = document.createElement("button");
       confirmBtn.type = "button";
       confirmBtn.className = "bcf-chat-handoff-btn bcf-chat-handoff-btn--primary";
@@ -305,6 +312,8 @@
           return;
         }
 
+        errorMessage.hidden = true;
+        errorMessage.textContent = "";
         confirmBtn.disabled = true;
         editBtn.disabled = true;
         confirmBtn.setAttribute("aria-busy", "true");
@@ -319,7 +328,10 @@
             editBtn.disabled = false;
             confirmBtn.removeAttribute("aria-busy");
             confirmBtn.textContent = "Ja, bevestigen";
-            showHandoffOutcome(false);
+            errorMessage.textContent = window.BCFChatHandoff.ERROR_MESSAGE;
+            errorMessage.hidden = false;
+            liveRegion.textContent = window.BCFChatHandoff.ERROR_MESSAGE;
+            confirmBtn.focus();
           });
       });
 
@@ -333,6 +345,7 @@
 
       handoffArea.appendChild(summary);
       handoffArea.appendChild(prompt);
+      handoffArea.appendChild(errorMessage);
       handoffArea.appendChild(confirmBtn);
       handoffArea.appendChild(editBtn);
       liveRegion.textContent = prompt.textContent;
