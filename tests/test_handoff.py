@@ -95,6 +95,45 @@ def test_overly_long_field_is_rejected(client, mock_send, field, value):
     mock_send.assert_not_called()
 
 
+def test_name_control_characters_are_stripped_from_subject(client, mock_send):
+    # A crafted name must not be able to inject extra email headers via CR/LF.
+    payload = {**VALID_PAYLOAD, "name": "Eve\r\nBcc: victim@example.com"}
+
+    response = client.post(ENDPOINT, json=payload)
+
+    assert response.status_code == 200
+    subject = mock_send.call_args.kwargs["subject"]
+    assert "\r" not in subject
+    assert "\n" not in subject
+    assert "Bcc:" in subject  # text remains, but flattened onto one line
+
+
+@pytest.mark.parametrize(
+    "bad_url",
+    ["javascript:alert(1)", "ftp://example.com/x", "/relative/path", "not a url"],
+)
+def test_non_http_page_url_is_dropped(client, mock_send, bad_url):
+    payload = {**VALID_PAYLOAD, "pageUrl": bad_url}
+
+    response = client.post(ENDPOINT, json=payload)
+
+    assert response.status_code == 200
+    assert bad_url not in mock_send.call_args.kwargs["body"]
+
+
+@pytest.mark.parametrize(
+    "good_url",
+    ["https://bcf-confection.com/nl/contact", "http://example.com/page"],
+)
+def test_http_page_url_is_preserved(client, mock_send, good_url):
+    payload = {**VALID_PAYLOAD, "pageUrl": good_url}
+
+    response = client.post(ENDPOINT, json=payload)
+
+    assert response.status_code == 200
+    assert good_url in mock_send.call_args.kwargs["body"]
+
+
 def test_rate_limited_submissions_return_generic_rejection(
     client, mock_send, monkeypatch
 ):
