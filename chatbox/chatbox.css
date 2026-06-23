@@ -67,8 +67,9 @@
   z-index: var(--bcf-chat-z);
   display: flex;
   flex-direction: column;
-  width: min(22rem, calc(100vw - 2rem));
-  max-height: min(32rem, calc(100vh - 7rem));
+  width: min(44rem, calc(100vw - 2rem));
+  height: min(64rem, calc(100vh - 7rem));
+  max-height: calc(100vh - 7rem);
   background: var(--bcf-chat-surface);
   border: 1px solid var(--bcf-chat-border);
   border-radius: var(--bcf-chat-radius);
@@ -431,6 +432,7 @@
     right: 0.5rem;
     left: 0.5rem;
     width: auto;
+    height: auto;
     bottom: 5rem;
     max-height: calc(100vh - 6rem);
   }
