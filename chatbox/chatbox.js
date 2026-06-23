@@ -60,9 +60,17 @@
     persistMessages();
   }
 
-  function hasUserMessages() {
+  function isGreetingIntent(intent) {
+    return intent && intent.id === "greeting";
+  }
+
+  function hasNonGreetingUserMessages(intentsData) {
     return sessionMessages.some(function (msg) {
-      return msg.role === "user";
+      var matchedIntent =
+        msg.role === "user" && window.BCFChatIntents
+          ? window.BCFChatIntents.matchIntent(intentsData, msg.text)
+          : null;
+      return msg.role === "user" && !isGreetingIntent(matchedIntent);
     });
   }
 
@@ -71,7 +79,7 @@
     root.dataset.bcfChatInit = "true";
 
     var isOpen = false;
-    var quickRepliesUsed = hasUserMessages();
+    var quickRepliesUsed = hasNonGreetingUserMessages(intentsData);
     var quickButtonIntents = window.BCFChatIntents.getQuickButtonIntents(intentsData);
 
     if (sessionMessages.length === 0) {
@@ -549,7 +557,6 @@
       var trimmed = text.trim();
       if (!trimmed) return;
 
-      hideQuickReplies();
       addMessage("user", trimmed);
 
       var matchedIntent = window.BCFChatIntents.matchIntent(intentsData, trimmed);
@@ -557,6 +564,12 @@
         clearHandoffArea();
         addMessage("bot", matchedIntent.answer);
         liveRegion.textContent = "Antwoord: " + matchedIntent.answer;
+        if (isGreetingIntent(matchedIntent)) {
+          quickReplies.hidden = false;
+          quickRepliesUsed = false;
+        } else {
+          hideQuickReplies();
+        }
       } else {
         quickReplies.hidden = true;
         quickRepliesUsed = true;
