@@ -6,6 +6,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from backend.config import get_cors_allow_origins, serve_static_enabled
@@ -32,6 +33,12 @@ if _cors_origins:
 def health() -> dict[str, str]:
     """Lightweight liveness probe for deployment/HTTPS reachability checks."""
     return {"status": "ok"}
+
+
+@app.get("/", include_in_schema=False)
+def root() -> RedirectResponse:
+    """Show the bundled staging demo at the deployment root."""
+    return RedirectResponse(url="/demo/", status_code=307)
 
 
 app.include_router(handoff_router)
