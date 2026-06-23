@@ -3,6 +3,26 @@
   "version": "1.0",
   "intents": [
     {
+      "id": "greeting",
+      "question": "Hallo",
+      "exampleUserQuestions": [
+        "Hoi",
+        "Hey",
+        "Hi",
+        "Hello",
+        "Goedendag",
+        "Goeiedag",
+        "Goeiemorgen",
+        "Goedemorgen",
+        "Goedemiddag",
+        "Goedenavond",
+        "Bonjour"
+      ],
+      "answer": "Goedendag! Waarmee kan ik u helpen? U kunt hier vragen stellen over onze producten, leveringen, bestellingen of contact opnemen.",
+      "handoffAllowed": false,
+      "status": "approved"
+    },
+    {
       "id": "minimum_order_quantity",
       "question": "Wat is de minimale bestelhoeveelheid?",
       "exampleUserQuestions": [
